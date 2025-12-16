@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>北海道冬季7天自駕遊｜優雅互動行程表</title>
+    <!-- Google Fonts：精緻優雅字體 -->
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Lora:wght@400;500&display=swap" rel="stylesheet">
+    <!-- Leaflet CSS -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    <link rel="stylesheet" href="https://unpkg.com/leaflet-routing-machine@latest/dist/leaflet-routing-machine.css" />
+    <!-- SortableJS -->
+    <script src="https://cdn.jsdelivr.net/npm/sortablejs@1.15.0/Sortable.min.js"></script>
+    <style>
+        body { 
+            margin: 0; padding: 0; font-family: 'Lora', serif; background: #fffff0; color: #333; 
+        }
+        header { 
+            background: linear-gradient(to bottom, #a3c1e0, #fffff0); padding: 40px; text-align: center; 
+            color: #333; box-shadow: 0 4px 12px rgba(0,0,0,0.1); 
+        }
+        h1 { font-family: 'Playfair Display', serif; font-size: 3rem; color: #d4af37; }
+        h2 { font-family: 'Playfair Display', serif; color: #d4af37; }
+        .container { display: flex; flex-wrap: wrap; padding: 20px; gap: 20px; max-width: 1400px; margin: auto; }
+        .itinerary { flex: 1; min-width: 300px; }
+        .day-card { 
+            background: white; border-radius: 12px; padding: 20px; margin-bottom: 15px; 
+            box-shadow: 0 4px 15px rgba(163,193,224,0.2); transition: all 0.3s ease; cursor: grab; 
+        }
+        .day-card:hover { transform: translateY(-5px); box-shadow: 0 8px 25px rgba(212,175,55,0.2); }
+        .day-card h3 { margin: 0; color: #d4af37; }
+        .map-section { flex: 2; min-width: 300px; height: 600px; border-radius: 12px; overflow: hidden; box-shadow: 0 4px 20px rgba(0,0,0,0.1); }
+        #map { height: 100%; }
+        .budget { margin-top: 40px; background: white; padding: 25px; border-radius: 12px; box-shadow: 0 4px 15px rgba(163,193,224,0.2); }
+        input { padding: 8px; width: 100px; border: 1px solid #a3c1e0; border-radius: 6px; }
+        .restaurant-link { color: #d4af37; text-decoration: underline; }
+        .note { font-size: 0.9rem; color: #666; }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>北海道冬季7天自駕遊</h1>
+        <p style="font-size:1.3rem;">2026年1月｜11人團體｜滑雪、雪景與美食的優雅之旅</p>
+    </header>
+
+    <div class="container">
+        <div class="itinerary">
+            <h2>互動行程表（拖拽調整順序）</h2>
+            <div id="days-list">
+                <!-- Day 1 -->
+                <div class="day-card" data-lat="42.7944" data-lng="141.6819">
+                    <h3>Day 1｜抵達 & 前往富良野</h3>
+                    <p>15:50/17:50 分批抵達新千歲機場（CTS）→ 租車 → 晚間抵達富良野Airbnb</p>
+                    <p class="note">晚餐：機場或路邊便利店</p>
+                </div>
+                <!-- Day 2 -->
+                <div class="day-card" data-lat="43.0583" data-lng="142.6333">
+                    <h3>Day 2｜星野Tomamu 全團滑雪 & 冰之村</h3>
+                    <p>全天滑雪 + 17:00-22:00 冰之村燈光（2026開放時間）</p>
+                    <p>晚餐：<a href="https://www.snowtomamu.jp/winter/cn/restaurant/nininupuri.php" target="_blank" class="restaurant-link">森林餐廳 Nininupuri（自助餐，建議度假村內預訂）</a></p>
+                </div>
+                <!-- Day 3 -->
+                <div class="day-card" data-lat="43.4928" data-lng="142.6072">
+                    <h3>Day 3｜美瑛雪景 & 前往二世谷</h3>
+                    <p>聖誕樹、Patchwork Road、Birke之森、青池 & 白鬚瀑布（冬季白天雪景，燈光至21:00）</p>
+                    <p>晚餐：Family Mart</p>
+                </div>
+                <!-- Day 4 -->
+                <div class="day-card" data-lat="42.8611" data-lng="140.6989">
+                    <h3>Day 4｜二世谷滑雪</h3>
+                    <p>Niseko United 粉雪滑雪（約08:30-16:30，夜滑至19:30）</p>
+                </div>
+                <!-- Day 5 -->
+                <div class="day-card" data-lat="42.8611" data-lng="140.6989">
+                    <h3>Day 5｜二世谷滑雪 & 放鬆</h3>
+                    <p>滑雪 + 溫泉</p>
+                    <p>晚餐 19:30：<a href="https://www.tablecheck.com/en/shops/icaro-niseko/reserve" target="_blank" class="restaurant-link">Icaro Niseko（義大利+日本風，線上訂位）</a></p>
+                </div>
+                <!-- Day 6 -->
+                <div class="day-card" data-lat="43.0618" data-lng="141.3545">
+                    <h3>Day 6｜前往札幌 & 市區探索</h3>
+                    <p>大通公園、時計台</p>
+                    <p>晚餐 19:30：<a href="https://www.tablecheck.com/en/suginome-utari" target="_blank" class="restaurant-link">Robatayaki Utari（爐端燒推薦，線上訂位）</a></p>
+                </div>
+                <!-- Day 7 -->
+                <div class="day-card" data-lat="43.0618" data-lng="141.3545">
+                    <h3>Day 7｜札幌全天 & 返程準備</h3>
+                    <p>啤酒博物館、白い恋人公園、藻岩山夜景</p>
+                    <p>晚餐 19:30：<a href="https://www.kani-honke.co.jp/en/reserve.html" target="_blank" class="restaurant-link">Sapporo Kani Honke（蟹料理名店，線上/電話訂位）</a></p>
+                </div>
+            </div>
+        </div>
+
+        <div class="map-section">
+            <h2>互動地圖（拖拽行程後自動優化動線）</h2>
+            <div id="map"></div>
+        </div>
+    </div>
+
+    <div class="container budget">
+        <h2>預算估算模組（人均日圓，約值）</h2>
+        <p>租車+油費（11人分攤）：<input type="number" id="car" value="3000"> /天</p>
+        <p>住宿（Airbnb/酒店）：<input type="number" id="hotel" value="8000"> /天</p>
+        <p>餐食平均：<input type="number" id="food" value="5000"> /天</p>
+        <p>門票/滑雪/活動：<input type="number" id="ticket" value="6000"> /天</p>
+        <p><strong>總估算（7天）：</strong> <span id="total">約 ¥147,000</span></p>
+        <p class="note">實際依選擇變動，滑雪日活動費較高。</p>
+    </div>
+
+    <!-- Leaflet JS -->
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <script src="https://unpkg.com/leaflet-routing-machine@latest/dist/leaflet-routing-machine.js"></script>
+    <script>
+        // 地圖初始化
+        const map = L.map('map').setView([43.0, 141.5], 8);
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png').addTo(map);
+
+        let routingControl = null;
+        let markers = [];
+
+        function updateMap() {
+            // 清除舊路線與標記
+            if (routingControl) map.removeControl(routingControl);
+            markers.forEach(m => map.removeLayer(m));
+            markers = [];
+
+            const waypoints = [];
+            document.querySelectorAll('.day-card').forEach(card => {
+                const lat = parseFloat(card.dataset.lat);
+                const lng = parseFloat(card.dataset.lng);
+                const title = card.querySelector('h3').textContent;
+                waypoints.push(L.latLng(lat, lng));
+                const marker = L.marker([lat, lng]).addTo(map).bindPopup(title);
+                markers.push(marker);
+            });
+
+            // 自動優化路線
+            if (waypoints.length > 1) {
+                routingControl = L.Routing.control({
+                    waypoints: waypoints,
+                    routeWhileDragging: true,
+                    addWaypoints: false,
+                    createMarker: () => null // 隱藏預設標記，用我們自己的
+                }).addTo(map);
+            }
+        }
+
+        // 拖拽排序
+        new Sortable(document.getElementById('days-list'), {
+            animation: 150,
+            onEnd: updateMap
+        });
+
+        // 初始載入地圖
+        updateMap();
+
+        // 預算計算
+        function calcBudget() {
+            const car = parseInt(document.getElementById('car').value) || 0;
+            const hotel = parseInt(document.getElementById('hotel').value) || 0;
+            const food = parseInt(document.getElementById('food').value) || 0;
+            const ticket = parseInt(document.getElementById('ticket').value) || 0;
+            const total = (car + hotel + food + ticket) * 7;
+            document.getElementById('total').textContent = `約 ¥${total.toLocaleString()}`;
+        }
+        document.querySelectorAll('input').forEach(input => input.addEventListener('input', calcBudget));
+        calcBudget();
+    </script>
+</body>
+</html>
