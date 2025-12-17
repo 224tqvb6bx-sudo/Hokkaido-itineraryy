@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>北海道冬季7天自駕遊｜優雅互動行程表</title>
+    <title>北海道冬季7天自駕遊｜互動行程表</title>
     <!-- Google Fonts：精緻優雅字體 -->
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Lora:wght@400;500&display=swap" rel="stylesheet">
     <!-- Leaflet CSS -->
@@ -25,10 +25,14 @@
         .itinerary { flex: 1; min-width: 300px; }
         .day-card { 
             background: white; border-radius: 12px; padding: 20px; margin-bottom: 15px; 
-            box-shadow: 0 4px 15px rgba(163,193,224,0.2); transition: all 0.3s ease; cursor: grab; 
+            box-shadow: 0 4px 15px rgba(163,193,224,0.2); transition: all 0.3s ease; cursor: pointer; 
         }
         .day-card:hover { transform: translateY(-5px); box-shadow: 0 8px 25px rgba(212,175,55,0.2); }
         .day-card h3 { margin: 0; color: #d4af37; }
+        details { margin-top: 15px; background: #f8f8f8; padding: 15px; border-radius: 8px; }
+        summary { cursor: pointer; font-weight: bold; color: #d4af37; }
+        .accommodation { font-weight: bold; color: #a3c1e0; margin-top: 10px; }
+        .restaurant { margin-top: 8px; font-style: italic; color: #666; }
         .map-section { flex: 2; min-width: 300px; height: 600px; border-radius: 12px; overflow: hidden; box-shadow: 0 4px 20px rgba(0,0,0,0.1); }
         #map { height: 100%; }
         .budget { margin-top: 40px; background: white; padding: 25px; border-radius: 12px; box-shadow: 0 4px 15px rgba(163,193,224,0.2); }
@@ -45,48 +49,119 @@
 
     <div class="container">
         <div class="itinerary">
-            <h2>互動行程表（拖拽調整順序）</h2>
+            <h2>互動行程表（拖拽調整順序，點擊展開詳細）</h2>
             <div id="days-list">
                 <!-- Day 1 -->
                 <div class="day-card" data-lat="42.7944" data-lng="141.6819">
-                    <h3>Day 1｜抵達 & 前往富良野</h3>
-                    <p>15:50/17:50 分批抵達新千歲機場（CTS）→ 租車 → 晚間抵達富良野Airbnb</p>
-                    <p class="note">晚餐：機場或路邊便利店</p>
+                    <h3>Day 1｜1月10日 抵達 & 前往富良野</h3>
+                    <p>分批抵達新千歲機場 → 租車 → 晚間抵達富良野</p>
+                    <details>
+                        <summary>點擊查看詳細時間 & 景點</summary>
+                        <ul>
+                            <li>15:50：9人抵達CTS</li>
+                            <li>17:50：接餘下2人</li>
+                            <li>20:00後：出發中富良野（夜路預留4小時）</li>
+                            <li>23:30左右：抵達休息</li>
+                            <li>晚餐：機場或路邊便利店</li>
+                        </ul>
+                        <p class="accommodation">住宿：中富良野 Airbnb<br>〒076-0024 北海道富良野市幸町４−31</p>
+                    </details>
                 </div>
+
                 <!-- Day 2 -->
                 <div class="day-card" data-lat="43.0583" data-lng="142.6333">
-                    <h3>Day 2｜星野Tomamu 全團滑雪 & 冰之村</h3>
-                    <p>全天滑雪 + 17:00-22:00 冰之村燈光（2026開放時間）</p>
-                    <p>晚餐：<a href="https://www.snowtomamu.jp/winter/cn/restaurant/nininupuri.php" target="_blank" class="restaurant-link">森林餐廳 Nininupuri（自助餐，建議度假村內預訂）</a></p>
+                    <h3>Day 2｜1月11日 星野Tomamu 全團滑雪 & 冰之村</h3>
+                    <p>全天滑雪 + 晚上冰之村燈光</p>
+                    <details>
+                        <summary>點擊查看詳細時間 & 景點</summary>
+                        <ul>
+                            <li>08:30-09:30：Airbnb → Tomamu（1小時）</li>
+                            <li>09:30-16:30：全團滑雪 / 度假村活動</li>
+                            <li>17:00-21:00：冰之村燈光（玩至20:30）</li>
+                            <li>21:30-22:30：返回Airbnb</li>
+                            <li>晚餐：森林餐廳或度假村內</li>
+                        </ul>
+                        <p class="accommodation">住宿：中富良野 Airbnb<br>〒076-0024 北海道富良野市幸町４−31</p>
+                    </details>
                 </div>
+
                 <!-- Day 3 -->
                 <div class="day-card" data-lat="43.4928" data-lng="142.6072">
-                    <h3>Day 3｜美瑛雪景 & 前往二世谷</h3>
-                    <p>聖誕樹、Patchwork Road、Birke之森、青池 & 白鬚瀑布（冬季白天雪景，燈光至21:00）</p>
-                    <p>晚餐：Family Mart</p>
+                    <h3>Day 3｜1月12日 美瑛雪景 & 前往二世谷</h3>
+                    <p>白天美瑛經典雪景 → 移動至二世谷</p>
+                    <details>
+                        <summary>點擊查看詳細時間 & 景點</summary>
+                        <ul>
+                            <li>07:00-08:00：早餐，check out</li>
+                            <li>08:00-14:00：美瑛地區<br>• 聖誕樹（Christmas Tree）<br>• Patchwork Road 雪原<br>• Birke之森<br>• 青池 & 白鬚瀑布（冬季雪景）</li>
+                            <li>14:00-19:00：美瑛 → 二世谷（預留5小時）</li>
+                            <li>19:00後：check-in 休息</li>
+                            <li>晚餐：Family Mart</li>
+                        </ul>
+                        <p class="accommodation">住宿：二世谷<br>24-2 Kabayama Kutchan-cho, 俱知安, 044-0078, 日本</p>
+                    </details>
                 </div>
+
                 <!-- Day 4 -->
                 <div class="day-card" data-lat="42.8611" data-lng="140.6989">
-                    <h3>Day 4｜二世谷滑雪</h3>
-                    <p>Niseko United 粉雪滑雪（約08:30-16:30，夜滑至19:30）</p>
+                    <h3>Day 4｜1月13日 二世谷滑雪</h3>
+                    <p>Niseko United 粉雪滑雪 + 放鬆</p>
+                    <details>
+                        <summary>點擊查看詳細時間 & 景點</summary>
+                        <ul>
+                            <li>09:00-16:00：滑雪組 Niseko United 滑雪</li>
+                            <li>非滑雪組：溫泉、雪鞋漫步、逛 Hirafu 村</li>
+                            <li>下午/晚上：全團自由（溫泉或散步）</li>
+                        </ul>
+                        <p class="accommodation">住宿：二世谷<br>24-2 Kabayama Kutchan-cho, 俱知安, 044-0078, 日本</p>
+                    </details>
                 </div>
+
                 <!-- Day 5 -->
                 <div class="day-card" data-lat="42.8611" data-lng="140.6989">
-                    <h3>Day 5｜二世谷滑雪 & 放鬆</h3>
-                    <p>滑雪 + 溫泉</p>
-                    <p>晚餐 19:30：<a href="https://www.tablecheck.com/en/shops/icaro-niseko/reserve" target="_blank" class="restaurant-link">Icaro Niseko（義大利+日本風，線上訂位）</a></p>
+                    <h3>Day 5｜1月14日 二世谷滑雪 & 放鬆</h3>
+                    <p>繼續粉雪滑雪 + 溫泉</p>
+                    <details>
+                        <summary>點擊查看詳細時間 & 景點</summary>
+                        <ul>
+                            <li>09:00-16:00：同 Day 4 滑雪活動</li>
+                            <li>19:30：Icaro 餐廳晚餐（義大利+日本風）</li>
+                        </ul>
+                        <p class="accommodation">住宿：二世谷<br>24-2 Kabayama Kutchan-cho, 俱知安, 044-0078, 日本</p>
+                    </details>
                 </div>
+
                 <!-- Day 6 -->
                 <div class="day-card" data-lat="43.0618" data-lng="141.3545">
-                    <h3>Day 6｜前往札幌 & 市區探索</h3>
-                    <p>大通公園、時計台</p>
-                    <p>晚餐 19:30：<a href="https://www.tablecheck.com/en/suginome-utari" target="_blank" class="restaurant-link">Robatayaki Utari（爐端燒推薦，線上訂位）</a></p>
+                    <h3>Day 6｜1月15日 前往札幌 & 市區探索</h3>
+                    <p>移動札幌 + 下午市區散步</p>
+                    <details>
+                        <summary>點擊查看詳細時間 & 景點</summary>
+                        <ul>
+                            <li>09:00-12:30：二世谷 → 札幌（預留3.5小時）</li>
+                            <li>下午：大通公園雪景、時計台、舊北海道廳</li>
+                            <li>19:30：爐端燒晚餐</li>
+                        </ul>
+                        <p class="restaurant">爐端燒地址：北海道札幌市中央区南６条西４プラザ6・4ビルB1F</p>
+                        <p class="accommodation">住宿：SAPPORO HOTEL by GRANBELL<br>（札幌市中心）</p>
+                    </details>
                 </div>
+
                 <!-- Day 7 -->
                 <div class="day-card" data-lat="43.0618" data-lng="141.3545">
-                    <h3>Day 7｜札幌全天 & 返程準備</h3>
-                    <p>啤酒博物館、白い恋人公園、藻岩山夜景</p>
-                    <p>晚餐 19:30：<a href="https://www.kani-honke.co.jp/en/reserve.html" target="_blank" class="restaurant-link">Sapporo Kani Honke（蟹料理名店，線上/電話訂位）</a></p>
+                    <h3>Day 7｜1月16日 札幌全天 & 返程準備</h3>
+                    <p>札幌市內經典景點 + 夜景</p>
+                    <details>
+                        <summary>點擊查看詳細時間 & 景點</summary>
+                        <ul>
+                            <li>上午：札幌啤酒博物館、白い恋人公園</li>
+                            <li>下午：薄野購物、雪燈光散步</li>
+                            <li>晚上：藻岩山纜車夜景（全團推薦）</li>
+                            <li>19:30：蟹料理晚餐</li>
+                        </ul>
+                        <p class="restaurant">蟹料理地址：地鐵大通站35號出口步行3分鐘，距離狸小路 302 米</p>
+                        <p class="accommodation">住宿：SAPPORO HOTEL by GRANBELL<br>（札幌市中心）</p>
+                    </details>
                 </div>
             </div>
         </div>
@@ -119,7 +194,6 @@
         let markers = [];
 
         function updateMap() {
-            // 清除舊路線與標記
             if (routingControl) map.removeControl(routingControl);
             markers.forEach(m => map.removeLayer(m));
             markers = [];
@@ -134,13 +208,12 @@
                 markers.push(marker);
             });
 
-            // 自動優化路線
             if (waypoints.length > 1) {
                 routingControl = L.Routing.control({
                     waypoints: waypoints,
                     routeWhileDragging: true,
                     addWaypoints: false,
-                    createMarker: () => null // 隱藏預設標記，用我們自己的
+                    createMarker: () => null
                 }).addTo(map);
             }
         }
@@ -151,7 +224,7 @@
             onEnd: updateMap
         });
 
-        // 初始載入地圖
+        // 初始載入
         updateMap();
 
         // 預算計算
